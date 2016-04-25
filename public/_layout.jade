@@ -1,0 +1,23 @@
+//- generate relative path
+
+- relPath = current.path.filter(function(p) { return p !== current.source }).map(function(p) { return '../' }).join('')
+
+html
+  head
+    title #{ title }
+  body
+    h1 Hello #{ name }!
+    nav
+      a(href='#{relPath}index.html') this page
+      = '\n'
+      a(href='#{relPath}index2.html') other page
+      = '\n'
+      a(href='#{relPath}2nd/index.html') 2nd dir
+      = '\n'
+      a(href='#{relPath}2nd/3rd/index.html') 3rd dir
+
+    != partial('_relpath', { relPath: relPath })
+    ul
+      - each key in Object.keys(current)
+        li= key + ': ' + current[key]
+    != yield
