@@ -1,0 +1,19 @@
+
+globals:
+  title: Acme Site
+  name: John Doe
+  uri: http://example.com
+  public_root: ~/Sites/harp-test/public/
+  nav_list:
+    - label: Index
+      id: index
+    - label: Other
+      id: other
+    - label: 2nd Index
+      id: 2nd-index
+    - label: 2nd Page
+      id: 2nd-page
+    - label: 3rd Index
+      id: 2nd-3rd-index
+    - label: 3rd Page
+      id: 2nd-3rd-page

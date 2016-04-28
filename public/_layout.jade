@@ -1,23 +1,55 @@
 //- generate relative path
 
-- relPath = current.path.filter(function(p) { return p !== current.source }).map(function(p) { return '../' }).join('')
+- relRoot = current.path.filter(function(p) { return p !== current.source }).map(function(p) { return '../' }).join('')
+- relRoot = relRoot === '' ? './' : relRoot
+- current.relRoot = relRoot
 
 html
   head
     title #{ title }
+    meta(name='description',content='#{ description }')
+    meta(name='keywords',content='#{ keywords }')
+    // Latest compiled and minified CSS
+    link(
+      rel='stylesheet'
+      href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'
+      integrity='sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7'
+      crossorigin='anonymous'
+    )
   body
-    h1 Hello #{ name }!
-    nav
-      a(href='#{relPath}index.html') this page
-      = '\n'
-      a(href='#{relPath}index2.html') other page
-      = '\n'
-      a(href='#{relPath}2nd/index.html') 2nd dir
-      = '\n'
-      a(href='#{relPath}2nd/3rd/index.html') 3rd dir
+    != partial('_header', { relRoot: relRoot })
+    .container-fluid
+      ul.list-group
+        - each key in Object.keys(current)
+          li.list-group-item.clearfix
+            .row
+              .col-md-2.text-muted #{key}
+              .col-md-10 #{current[key]}
+      ul.list-group
+        - props = {title:title,description:description,keywords:keywords}
+        - each key in Object.keys(props)
+          li.list-group-item.clearfix
+            .row
+              .col-md-2.text-muted #{key}
+              .col-md-10 #{props[key]}
+      ol.breadcrumb
+        li
+          a(href='#')= public._data.index.category
+        - store = public
+        - source = current.source
+        - l = current.path.length
+        - each path, i in current.path
+          if i < l - 1
+            if l > 0
+              - store = store[path]
+            li
+              a(href='#')= store._data[source].category
+          else
+            if path !== 'index'
+              li
+                a(href='#')= store._data[source].title
+      
+      != partial('_data_table')
 
-    != partial('_relpath', { relPath: relPath })
-    ul
-      - each key in Object.keys(current)
-        li= key + ': ' + current[key]
-    != yield
+    article.container-fluid
+      != yield

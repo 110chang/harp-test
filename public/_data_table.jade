@@ -1,0 +1,37 @@
+
+table.table.table-striped
+  thead
+    tr
+      th(scope='col') Page
+      th(scope='col') Category
+      th(scope='col') Title
+  tbody
+    tr
+      th(scope='row') index.html
+      td= public._data.index.category
+      td= public._data.index.title
+
+    tr
+      th(scope='row') other.html
+      td= public._data.other.category
+      td= public._data.other.title
+
+    tr
+      th(scope='row') 2nd/index.html
+      td= public['2nd']._data.index.category
+      td= public['2nd']._data.index.title
+
+    tr
+      th(scope='row') 2nd/page.html
+      td= public['2nd']._data.page.category
+      td= public['2nd']._data.page.title
+
+    tr
+      th(scope='row') 3rd/index.html
+      td= public['2nd']['3rd']._data.index.category
+      td= public['2nd']['3rd']._data.index.title
+
+    tr
+      th(scope='row') 3rd/page.html
+      td= public['2nd']['3rd']._data.page.category
+      td= public['2nd']['3rd']._data.page.title

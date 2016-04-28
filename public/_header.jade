@@ -1,0 +1,21 @@
+
+//- header partial
+
+- currentId = current.path.join('-')
+
+nav.navbar.navbar-default.navbar-inverse(style='border-radius:0')
+  .container-fluid
+    .navbar-header
+      a.navbar-brand(href='#{relRoot}index.html') Hello #{ name }!
+    ul.nav.navbar-nav
+      - each nav in nav_list
+        - midPath = nav.id.split('-').join('/')
+        if currentId === nav.id
+          li.active
+            a(href='#{relRoot}#{midPath}.html')= nav.label
+        else
+          li
+            a(href='#{relRoot}#{midPath}.html')= nav.label
+    
+    .nav.navbar-nav.navbar-right
+      .navbar-text= currentId

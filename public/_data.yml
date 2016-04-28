@@ -1,0 +1,10 @@
+index:
+  title: Index
+  keywords: anything,key,word
+  description: This is harp sample
+  category: Top
+other:
+  title: Other
+  keywords: other,anything,key,word
+  description: This is other page of harp sample
+  category: Other
