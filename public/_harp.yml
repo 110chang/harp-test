@@ -3,7 +3,6 @@ globals:
   title: Acme Site
   name: John Doe
   uri: http://example.com
-  public_root: ~/Sites/harp-test/public/
   nav_list:
     - label: Index
       id: index

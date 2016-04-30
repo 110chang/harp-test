@@ -16,6 +16,8 @@ html
       integrity='sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7'
       crossorigin='anonymous'
     )
+    link(rel='stylesheet',href='#{ relRoot }css/style.css')
+    script(src='#{ relRoot }js/bundle.js')
   body
     != partial('_header', { relRoot: relRoot })
     .container-fluid
@@ -37,7 +39,7 @@ html
           a(href='#')= public._data.index.category
         - store = public
         - source = current.source
-        - l = current.path.length
+        - l = current.path.length || 0
         - each path, i in current.path
           if i < l - 1
             if l > 0
@@ -53,3 +55,4 @@ html
 
     article.container-fluid
       != yield
+
